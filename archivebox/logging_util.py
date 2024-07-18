@@ -97,6 +97,8 @@ class SmartFormatter(argparse.HelpFormatter):
 def reject_stdin(caller: str, stdin: Optional[IO]=sys.stdin) -> None:
     """Tell the user they passed stdin to a command that doesn't accept it"""
 
+    # sys.stdin fails when used in pm2 for some reason. This is a hack to fix it temporarily
+    return None
     if not stdin:
         return None
 
